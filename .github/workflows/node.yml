@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.Js version 18.12.0
+      - name: Use Node.Js version 18
         uses: actions/setup-node@v2
         with:
-          node-version: '18.12.0'
+          node-version: '18'
       - run: npm install
       - run: npm run build --prefix client
