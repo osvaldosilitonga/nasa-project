@@ -17,7 +17,7 @@ describe("Testing all /launches", () => {
   describe("Test GET /launches", () => {
     test("It should response with 200 success", async () => {
       const response = await request(app)
-        .get("/launches")
+        .get("/v1/launches")
         .expect("Content-Type", /json/)
         .expect(200);
     });
@@ -26,14 +26,14 @@ describe("Testing all /launches", () => {
   describe("DELETE /launches/:id", () => {
     test("It should response with 200 success", async () => {
       const response = await request(app)
-        .delete("/launches/100")
+        .delete("/v1/launches/100")
         .expect("Content-Type", /json/)
         .expect(200);
     });
 
     test("Fail Test - It should response with 404 not found", async () => {
       const response = await request(app)
-        .delete("/launches/99")
+        .delete("/v1/launches/99")
         .expect("Content-Type", /json/)
         .expect(404);
     });
@@ -63,7 +63,7 @@ describe("Testing all /launches", () => {
     test("It should response with 201 created", async () => {
       // POST request test
       const response = await request(app)
-        .post("/launches")
+        .post("/v1/launches")
         .send(compleateLaunchData)
         .expect("Content-Type", /json/)
         .expect(201);
@@ -79,7 +79,7 @@ describe("Testing all /launches", () => {
 
     test("It should catch Missing some launch information", async () => {
       const response = await request(app)
-        .post("/launches")
+        .post("/v1/launches")
         .send(launchDataWithoutDate)
         .expect("Content-Type", /json/)
         .expect(400);
@@ -91,7 +91,7 @@ describe("Testing all /launches", () => {
 
     test("It should catch Date is not correct", async () => {
       const response = await request(app)
-        .post("/launches")
+        .post("/v1/launches")
         .send(invalidLaunchDate)
         .expect("Content-Type", /json/)
         .expect(400);
