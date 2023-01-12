@@ -23,22 +23,6 @@ describe("Testing all /launches", () => {
     });
   });
 
-  describe("DELETE /launches/:id", () => {
-    test("It should response with 200 success", async () => {
-      const response = await request(app)
-        .delete("/v1/launches/100")
-        .expect("Content-Type", /json/)
-        .expect(200);
-    });
-
-    test("Fail Test - It should response with 404 not found", async () => {
-      const response = await request(app)
-        .delete("/v1/launches/99")
-        .expect("Content-Type", /json/)
-        .expect(404);
-    });
-  });
-
   describe("Test POST /launches", () => {
     const compleateLaunchData = {
       mission: "USS Enterprise",
@@ -99,6 +83,22 @@ describe("Testing all /launches", () => {
       expect(response.body).toStrictEqual({
         error: "Date is not correct",
       });
+    });
+  });
+
+  describe("DELETE /launches/:id", () => {
+    test("It should response with 200 success", async () => {
+      const response = await request(app)
+        .delete("/v1/launches/1")
+        .expect("Content-Type", /json/)
+        .expect(200);
+    });
+
+    test("Fail Test - It should response with 404 not found", async () => {
+      const response = await request(app)
+        .delete("/v1/launches/99")
+        .expect("Content-Type", /json/)
+        .expect(404);
     });
   });
 });
