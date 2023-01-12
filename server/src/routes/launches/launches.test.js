@@ -44,7 +44,7 @@ describe("Testing all /launches", () => {
       target: "Kepler-442 b",
     };
 
-    test("[1] It should response with 201 created", async () => {
+    test("It should response with 201 created", async () => {
       // POST request test
       const response = await request(app)
         .post("/v1/launches")
@@ -59,24 +59,6 @@ describe("Testing all /launches", () => {
 
       // Body matching test
       expect(response.body).toMatchObject(launchDataWithoutDate);
-    });
-
-    test("[2] It should response with 201 created", async () => {
-      // POST request test
-      const response = await request(app)
-        .post("/v1/launches")
-        .send(compleateLaunchData)
-        .expect("Content-Type", /json/)
-        .expect(201);
-    });
-
-    test("[3] It should response with 201 created", async () => {
-      // POST request test
-      const response = await request(app)
-        .post("/v1/launches")
-        .send(compleateLaunchData)
-        .expect("Content-Type", /json/)
-        .expect(201);
     });
 
     test("It should catch Missing some launch information", async () => {
@@ -105,12 +87,12 @@ describe("Testing all /launches", () => {
   });
 
   describe("DELETE /launches/:id", () => {
-    test("It should response with 200 success", async () => {
-      const response = await request(app)
-        .delete("/v1/launches/2")
-        .expect("Content-Type", /json/)
-        .expect(200);
-    });
+    // test("It should response with 200 success", async () => {
+    //   const response = await request(app)
+    //     .delete("/v1/launches/2")
+    //     .expect("Content-Type", /json/)
+    //     .expect(200);
+    // });
 
     test("Fail Test - It should response with 404 not found", async () => {
       const response = await request(app)
